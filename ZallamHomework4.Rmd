@@ -1,0 +1,80 @@
+---
+title: "Homework 4"
+author: "Zoheb Allam"
+date: "October 24, 2016"
+output: html_document
+---
+This is the code for Homework Assignemnt 4. This bootstrap code illustrates the central limit theorem using a normal distribution and an exponential distribution. 
+
+The central limit theorem states that if you treat your small sample as a population and take the mean of values from that population x number of time, the sample mean will be approximately normally distributed. This is only true for large sample sizes.  
+
+
+
+
+This code is for n of 6 with a normal distribution. R has generated 6 normal random values to create a normal distribution. However, due to the small n we do not have normality. The function then takes 1,000 iterations from that sample and then takes the mean of each iteration to create a bootstrapped variable with 1,000 observations.  
+```{r}
+n1 <- 6
+nsim <- 1000
+bootmean1 <- numeric (nsim)  
+for (i in 1:nsim) {
+  x1 <- rnorm(n1) 
+  bootmean1 [i] <- mean (x1) 
+} 
+```
+
+The two histograms below indicate the distribution of the original variable with 6 observations. As you can its highly nonnormal, but the histogram of the bootstrapped mean is normally distributed.   
+```{r}
+hist(x1) 
+hist (bootmean1)
+```
+
+This code is for an n of 70 once again with a normal distribution. R has generated 70 normal random values. 
+```{r}
+n2 <- 70
+nsim <- 1000
+bootmean2 <- numeric (nsim)  
+for (i in 1:nsim) {
+  x2 <- rnorm(n2) 
+  bootmean2 [i] <- mean (x2) 
+} 
+```
+
+The two histograms below indicate the difference in the distribution. The original variable looks better than with an n of 6 but its still not quite normal. The bootstrapped mean is however.  
+```{r}
+hist(x2) 
+hist (bootmean2)
+```
+
+In this example instead of using rnorm which generates random normal number we generate numbers for an exponential distribution. An exponential distribution deals with time of a recurring event sequence and therefore the scale is now from 0 to 5.  
+```{r}
+n3 <- 12
+nsim <- 1000
+bootmean3 <- numeric (nsim)  
+for (i in 1:nsim) {
+  x3 <- rexp(n3) 
+  bootmean3 [i] <- mean (x3) 
+} 
+```
+
+These two graphs indicates that the central limit theorem still applies even for an exponential distribution. The bootstrapped variable is now relatively normal. 
+```{r}
+hist(x3) 
+hist (bootmean3)
+```
+
+This final code uses the same exponential distribution but a larger n.  
+```{r}
+n4 <- 80
+nsim <- 1000
+bootmean4 <- numeric (nsim)  
+for (i in 1:nsim) {
+  x4 <- rexp(n4) 
+  bootmean4 [i] <- mean (x4) 
+} 
+```
+
+The histogram for the original variable is heavily skewed but the bootmean is normally distributed. 
+```{r}
+hist(x4) 
+hist (bootmean4)
+```
